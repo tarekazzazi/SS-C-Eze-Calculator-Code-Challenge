@@ -13,6 +13,8 @@ function onReady() {
 const array = [];
 
 function display() {
+  // Not the most ideal way of displaying calc results
+  // Working with it for now
   array.push($(this).val());
   console.log(array);
   $("#input").val(array.join(""));
@@ -26,7 +28,6 @@ function Addition(event) {
 function Subtraction(event) {
   event.preventDefault();
   setOperator = "-";
-  DoMath();
 }
 function getAnswer() {
   console.log(".....getting answer");
@@ -39,16 +40,6 @@ function DoMath() {
   switch (setOperator) {
     case "+":
       Add();
-      // Variables
-      // newNumber = newNumber + Inputval;
-      // Inputval = Number($("#input").val());
-
-      // // way of displaying results
-      // const res = newNumber + Inputval;
-      // console.log(`${newNumber} + ${Inputval} = ${res}`);
-
-      // //  Clears Inputs
-      // $("#input").val("");
       break;
     case "-":
       Subtract();
@@ -60,9 +51,11 @@ function DoMath() {
 }
 
 function Add() {
+  // CURRENTLY BROKEN
   // Variables
   newNumber = newNumber + Inputval;
   Inputval = Number($("#input").val());
+
   // way of displaying results
   const res = newNumber + Inputval;
   console.log(`${newNumber} + ${Number(Inputval)} = ${res}`);
@@ -72,6 +65,7 @@ function Add() {
 }
 
 function Subtract() {
+  // CURRENTLY BROKEN
   // Variables
   newNumber = newNumber - Inputval;
   Inputval = Number($("#input").val());
