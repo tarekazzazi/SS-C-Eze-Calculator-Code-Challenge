@@ -7,6 +7,7 @@ let Inputval = 0;
 function onReady() {
   console.log("Jquery loaded");
   $("#plus").on("click", Addition);
+  $("#clear").on("click", Clear);
   $("#equal").on("click", getAnswer);
   $(":button").on("click", display);
 }
@@ -20,6 +21,10 @@ function display() {
   $("#input").val(array.join(""));
 }
 
+function Clear(event) {
+  event.preventDefault();
+  array.length = 0;
+}
 function Addition(event) {
   event.preventDefault();
   setOperator = "+";
