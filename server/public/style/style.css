@@ -2,7 +2,7 @@
   padding: 1em;
   background-color: grey;
   border: 5px solid black;
-  border-radius: 5%;
+  border-radius: 15px;
   width: 125px;
 }
 .calc-container {
@@ -17,7 +17,12 @@ input {
   height: 25px;
   width: 100px;
 }
+button:active {
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.75);
+}
 button {
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.75);
+
   margin: 0.5em;
   width: 20%;
   height: 30%;
