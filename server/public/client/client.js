@@ -1,78 +1,61 @@
 $(onReady);
 
 let setOperator;
-let newNumber = 0;
-let Inputval = 0;
+let input;
 
 function onReady() {
   console.log("Jquery loaded");
-  $("#plus").on("click", Addition);
-  $("#equal").on("click", getAnswer);
-  $(":button").on("click", display);
-}
-const array = [];
-
-function display() {
-  // Not the most ideal way of displaying calc results
-  // Working with it for now
-  array.push($(this).val());
-  console.log(array);
-  $("#input").val(array.join(""));
+  $("#plus").on("click", sendDoAddition);
+  $("#clear").on("click", clearInputs);
+  $();
 }
 
-function Addition(event) {
+function clearInputs(event) {
+  event.preventDefault();
+  input;
+}
+
+function sendDoAddition(event) {
+  //  Set Operator to addition
   event.preventDefault();
   setOperator = "+";
+  console.log(setOperator);
+  DoMath();
 }
-
-function Subtraction(event) {
-  event.preventDefault();
-  setOperator = "-";
-}
-function getAnswer() {
-  console.log(".....getting answer");
-}
-// Eventually move this to server side
-// let newNumber = 0;
-// let Inputval = 0;
 
 function DoMath() {
   switch (setOperator) {
     case "+":
-      Add();
+      // Checks if a value is entered an sets input to that val
+      // Then grabs the next input entered and does the operation either addition, Multiply, Divide or Subtract
+      if (input === undefined) {
+        input = Number($("#input1").val());
+        $("#input1").val("");
+      } else {
+        input = Number($("#input1").val()) + input;
+        $("#input1").val("");
+      }
       break;
     case "-":
-      Subtract();
+      if (input === undefined) {
+        input = Number($("#input1").val());
+        $("#input1").val("");
+      } else {
+        input = Number($("#input1").val()) - input;
+        $("#input1").val("");
+      }
+      break;
+    case "*":
+      if (input === undefined) {
+        input = Number($("#input1").val());
+        $("#input1").val("");
+      } else {
+        input = Number($("#input1").val()) * input;
+        $("#input1").val("");
+      }
       break;
     default:
       console.log("oh no I didnt get the operator");
       break;
   }
-}
-
-function Add() {
-  // CURRENTLY BROKEN
-  // Variables
-  newNumber = newNumber + Inputval;
-  Inputval = Number($("#input").val());
-
-  // way of displaying results
-  const res = newNumber + Inputval;
-  console.log(`${newNumber} + ${Number(Inputval)} = ${res}`);
-
-  //  Clears Inputs
-  // $("#input").val("");
-}
-
-function Subtract() {
-  // CURRENTLY BROKEN
-  // Variables
-  newNumber = newNumber - Inputval;
-  Inputval = Number($("#input").val());
-  // way of displaying results
-  const res = newNumber - Inputval;
-  console.log(`${newNumber} - ${Number(Inputval)} = ${res}`);
-
-  //  Clears Inputs
-  // $("#input").val("");
 }
