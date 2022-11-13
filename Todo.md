@@ -11,15 +11,15 @@
 <!-- Functions -->
 <!-- Inital function to determin what math to do-->
 
-[ ] DoMath
-[ ] Addition
-[ ] Subtraction
-[ ] Multiplication
-[ ] Divison
+[x] DoMath
+[x] Addition
+[x] Subtraction
+[x] Multiplication
+[x] Divison
 
 <!-- Conditional Render -->
 
-[ ] Operators +,-,x,/
+[x] Operators +,-,x,/
 [ ] Check for paretheses and do whats inside first
 [ ] Check for exponents do second
 
@@ -34,6 +34,6 @@
 [ ] List of calc history
 
 { } Style
-[ ] Buttons like calculator
+[x] Buttons like calculator
 [ ] inputs like calculator
-[ ] show only the most recent calculation
+[x] show only the most recent calculation
