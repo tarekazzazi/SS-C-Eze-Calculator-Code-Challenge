@@ -9,6 +9,8 @@ function onReady() {
   $("#minus").on("click", sendDoSubtraction);
   $("#times").on("click", sendDoMultiplycation);
   $("#divide").on("click", sendDoDivison);
+  $("#xponet").on("click", sendDoExponet);
+
   $("#clear").on("click", clearInputs);
   $("#submitBtn").on("click", getResults);
 }
@@ -72,6 +74,15 @@ function sendDoDivison(event) {
   DoMath();
 }
 
+function sendDoExponet(event) {
+  event.preventDefault();
+  setOperator = "^";
+  console.log(setOperator);
+  if (input !== undefined) {
+    $("#input1").val("");
+  }
+  DoMath();
+}
 function DoMath() {
   switch (setOperator) {
     case "+":
@@ -110,6 +121,15 @@ function DoMath() {
         $("#input1").val("");
       } else {
         input = input / Number($("#input1").val());
+      }
+      break;
+    case "^":
+      if (input === undefined) {
+        input = Number($("#input1").val());
+        $("#input1").val("");
+      } else {
+        input = Math.pow(input, Number($("#input1").val()));
+        console.log(input);
       }
       break;
     default:
