@@ -11,6 +11,9 @@ function onReady() {
   $("#times").on("click", setOperator);
   $("#divide").on("click", setOperator);
   $("#submitBtn").on("click", CheckForParenthesis);
+  $("#exponents").on("click", setOperator);
+  $("#clear").on("click", clearInputs);
+  $("#submitBtn").on("click", CheckForParenthesis);
 }
 
 function setOperator() {
