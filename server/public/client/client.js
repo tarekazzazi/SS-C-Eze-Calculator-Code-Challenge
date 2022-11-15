@@ -1,139 +1,125 @@
 $(onReady);
-
-let setOperator;
-let input;
+// Variables
+let Val1;
+let Val2;
+let Operator;
 
 function onReady() {
-  console.log("Jquery loaded");
-  $("#plus").on("click", sendDoAddition);
-  $("#minus").on("click", sendDoSubtraction);
-  $("#times").on("click", sendDoMultiplycation);
-  $("#divide").on("click", sendDoDivison);
-  $("#xponet").on("click", sendDoExponet);
+  $(":button").on("click", getValues);
+  $("#plus").on("click", setOperator);
+  $("#minus").on("click", setOperator);
+  $("#times").on("click", setOperator);
+  $("#divide").on("click", setOperator);
+  $("#submitBtn").on("click", CheckForParenthesis);
+}
+function setOperator() {
+  Operator = $(this).val();
+  $(".inputVal").val(Val1 + Operator);
+}
 
-  $("#clear").on("click", clearInputs);
-  $("#submitBtn").on("click", getResults);
+function CheckForParenthesis() {
+  // temporary way of defineing parenthesis when I have not gotten there yet
+  let parentheses = false;
+  if (parentheses === true) {
+    // If parenthisies exist do somthing
+  } else {
+    DoMath();
+  }
+}
+// Val1 Operator Val2
+// Check operator
+// Check parenthesis on equal button pressed
+// Do the first one
+function getValues() {
+  if (Val1 === undefined) {
+    // sets first val to the button pressed
+    Val1 = $(this).val();
+    $(".inputVal").val(Val1);
+  } else if (Operator === undefined) {
+    // Notifiys the user to select a operator so math can be done
+    $(".inputVal").val(Val1);
+  } else if (Val2 === undefined) {
+    // sets second val to the button pressed
+    Val2 = $(this).val();
+    // sets the value of the input but only uses it for displaying purposes
+    $(".inputVal").val(Val1 + Operator + Val2);
+  }
+
+  console.log(Val1, Operator, Val2);
 }
 
 function clearInputs(event) {
-  event.preventDefault();
-  // resets input value so it starts at the first num entered not the answer from =
-  input = undefined;
-  Number($("#input1").val("0"));
-}
-
-function getResults(event) {
-  event.preventDefault();
-  DoMath();
-  Number($("#input1").val(input));
-}
-
-function sendDoAddition(event) {
-  //  Set Operator to addition
-  event.preventDefault();
-  setOperator = "+";
-  console.log(setOperator);
-  // Checks if a number is left over from pressing equals and emptys the value so it dosent do the operation by itself
-  if (input !== undefined) {
-    $("#input1").val("");
-  }
-  // actually does the math
-  DoMath();
-}
-
-function sendDoSubtraction(event) {
-  //  Set Operator to subtraction
-  event.preventDefault();
-  setOperator = "-";
-  console.log(setOperator);
-  if (input !== undefined) {
-    $("#input1").val("");
-  }
-  DoMath();
-}
-
-function sendDoMultiplycation(event) {
-  //  Set Operator to Multiplycation
-  event.preventDefault();
-  setOperator = "*";
-  console.log(setOperator);
-  if (input !== undefined) {
-    $("#input1").val("");
-  }
-  DoMath();
-}
-
-function sendDoDivison(event) {
-  //  Set Operator to Divison
-  event.preventDefault();
-  setOperator = "/";
-  console.log(setOperator);
-  if (input !== undefined) {
-    $("#input1").val("");
-  }
-  DoMath();
-}
-
-function sendDoExponet(event) {
-  event.preventDefault();
-  setOperator = "^";
-  console.log(setOperator);
-  if (input !== undefined) {
-    $("#input1").val("");
-  }
-  DoMath();
+  Val1 = undefined;
+  Val2 = undefined;
 }
 function DoMath() {
-  switch (setOperator) {
+  console.log("made it to do math");
+  console.log(Val1, Val2, Operator);
+  switch (Operator) {
     case "+":
-      // Checks if a value is entered an sets input to that val
-      // Then grabs the next input entered and does the operation either addition, Multiply, Divide or Subtract
-      if (input === undefined) {
-        input = Number($("#input1").val());
-        $("#input1").val("");
-        console.log(input);
-      } else {
-        input = input + Number($("#input1").val());
-        console.log(input);
-      }
+      DoAdditon();
       break;
     case "-":
-      if (input === undefined) {
-        input = Number($("#input1").val());
-        $("#input1").val("");
-        console.log(input);
-      } else {
-        input = input - Number($("#input1").val());
-        console.log(input);
-      }
-      break;
-    case "*":
-      if (input === undefined) {
-        input = Number($("#input1").val());
-        $("#input1").val("");
-      } else {
-        input = input * Number($("#input1").val());
-      }
+      DoSubtraction();
       break;
     case "/":
-      if (input === undefined) {
-        input = Number($("#input1").val());
-        $("#input1").val("");
-      } else {
-        input = input / Number($("#input1").val());
-      }
+      DoDivison();
       break;
-    case "^":
-      if (input === undefined) {
-        input = Number($("#input1").val());
-        $("#input1").val("");
-      } else {
-        input = Math.pow(input, Number($("#input1").val()));
-        console.log(input);
-      }
+    case "*":
+      DoMultiplycation();
       break;
     default:
-      console.log("oh no I didnt get the operator");
       break;
   }
 }
+
+function getResults(event) {}
+
+// Core Operations
+// Multiply
+// Divide
+// Subtract
+// Add
+function DoAdditon() {
+  console.log("Doing Addition");
+  Val1 = Number(Val1) + Number(Val2);
+  $(".inputVal").val(Val1);
+
+  // IDK how but this can be condesed I know it can
+  Operator = undefined;
+  Val2 = undefined;
+  console.log(Val1);
+}
+
+function DoMultiplycation() {
+  Val1 = Number(Val1) * Number(Val2);
+  $(".inputVal").val(Val1);
+
+  // I really don't wanna repeat this
+  Operator = undefined;
+  Val2 = undefined;
+  console.log(Val1);
+}
+
+function DoDivison() {
+  Val1 = Number(Val1) / Number(Val2);
+  $(".inputVal").val(Val1);
+
+  // I really really don't wanna repeat this
+  Operator = undefined;
+  Val2 = undefined;
+  console.log(Val1);
+}
+
+function DoSubtraction() {
+  Val1 = Number(Val1) - Number(Val2);
+  $(".inputVal").val(Val1);
+
+  // I really really really don't wanna repeat this
+  Operator = undefined;
+  Val2 = undefined;
+  console.log(Val1);
+}
+// Sub Functionallies - Somthing I think can be done with the Core Operations
+// Exponent
+// Parentheses
