@@ -12,7 +12,9 @@ function onReady() {
   $("#divide").on("click", setOperator);
   $("#submitBtn").on("click", CheckForParenthesis);
 }
+
 function setOperator() {
+  // Sets operator to the operator button that is clicked
   Operator = $(this).val();
   $(".inputVal").val(Val1 + Operator);
 }
@@ -26,10 +28,7 @@ function CheckForParenthesis() {
     DoMath();
   }
 }
-// Val1 Operator Val2
-// Check operator
-// Check parenthesis on equal button pressed
-// Do the first one
+
 function getValues() {
   if (Val1 === undefined) {
     // sets first val to the button pressed
@@ -41,17 +40,22 @@ function getValues() {
   } else if (Val2 === undefined) {
     // sets second val to the button pressed
     Val2 = $(this).val();
-    // sets the value of the input but only uses it for displaying purposes
+    // sets the value of the input but only uses it for ** displaying **  purposes
     $(".inputVal").val(Val1 + Operator + Val2);
+  } else if (Val1 === Operator || Operator === Val1) {
+    // resets inputs if started by pressing an operator
+    clearInputs();
+    alert("Wrong Order try again");
   }
-
   console.log(Val1, Operator, Val2);
 }
 
-function clearInputs(event) {
+function clearInputs() {
   Val1 = undefined;
   Val2 = undefined;
+  Operator = undefined;
 }
+
 function DoMath() {
   console.log("made it to do math");
   console.log(Val1, Val2, Operator);
@@ -68,12 +72,13 @@ function DoMath() {
     case "*":
       DoMultiplycation();
       break;
+    case "^":
+      DoToPow();
+      break;
     default:
       break;
   }
 }
-
-function getResults(event) {}
 
 // Core Operations
 // Multiply
@@ -83,42 +88,39 @@ function getResults(event) {}
 function DoAdditon() {
   console.log("Doing Addition");
   Val1 = Number(Val1) + Number(Val2);
-  $(".inputVal").val(Val1);
-
-  // IDK how but this can be condesed I know it can
-  Operator = undefined;
-  Val2 = undefined;
-  console.log(Val1);
+  displayCurrentValue();
 }
 
 function DoMultiplycation() {
+  console.log("Doing Multiplycation");
   Val1 = Number(Val1) * Number(Val2);
-  $(".inputVal").val(Val1);
-
-  // I really don't wanna repeat this
-  Operator = undefined;
-  Val2 = undefined;
-  console.log(Val1);
+  displayCurrentValue();
 }
 
 function DoDivison() {
+  console.log("Doing Divison");
   Val1 = Number(Val1) / Number(Val2);
-  $(".inputVal").val(Val1);
-
-  // I really really don't wanna repeat this
-  Operator = undefined;
-  Val2 = undefined;
-  console.log(Val1);
+  displayCurrentValue();
 }
 
 function DoSubtraction() {
+  console.log("Doing Subtraction");
   Val1 = Number(Val1) - Number(Val2);
-  $(".inputVal").val(Val1);
+  displayCurrentValue();
+}
 
-  // I really really really don't wanna repeat this
+function DoToPow() {
+  console.log("Doing to the power of");
+  // Does Math.pow function to get the value of the first number to the power of the second
+  // Number converts the strings to numbers
+  Val1 = Math.pow(Number(Val1), Number(Val2));
+  displayCurrentValue();
+}
+
+function displayCurrentValue() {
+  $(".inputVal").val(Val1);
   Operator = undefined;
   Val2 = undefined;
-  console.log(Val1);
 }
 // Sub Functionallies - Somthing I think can be done with the Core Operations
 // Exponent
