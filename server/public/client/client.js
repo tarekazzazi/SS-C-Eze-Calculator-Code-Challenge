@@ -72,7 +72,7 @@ function DoMath() {
     case "/":
       DoDivison();
       break;
-    case "*":
+    case "x":
       DoMultiplycation();
       break;
     case "^":
