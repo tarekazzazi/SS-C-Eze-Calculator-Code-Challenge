@@ -10,7 +10,6 @@ function onReady() {
   $("#minus").on("click", setOperator);
   $("#times").on("click", setOperator);
   $("#divide").on("click", setOperator);
-  $("#submitBtn").on("click", CheckForParenthesis);
   $("#exponents").on("click", setOperator);
   $("#clear").on("click", clearInputs);
   $("#submitBtn").on("click", CheckForParenthesis);
@@ -38,7 +37,7 @@ function getValues() {
     Val1 = $(this).val();
     $(".inputVal").val(Val1);
   } else if (Operator === undefined) {
-    // Notifiys the user to select a operator so math can be done
+    // displays first value to calculator screen
     $(".inputVal").val(Val1);
   } else if (Val2 === undefined) {
     // sets second val to the button pressed
@@ -125,6 +124,6 @@ function displayCurrentValue() {
   Operator = undefined;
   Val2 = undefined;
 }
-// Sub Functionallies - Somthing I think can be done with the Core Operations
+// Sub Functionallies 
 // Exponent
 // Parentheses
